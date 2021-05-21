@@ -2,6 +2,6 @@ import * as React from 'react';
 
 export const ServerNavigation = () => (
   <div id='serverNavigation'>
-    <h2 id='serverNavigationHeader'>Servers</h2>
+    <h2 id='serverNavigationHeader'>Chats</h2>
   </div>
 );
