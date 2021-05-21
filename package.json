@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tarrinneal/harmony/issues"
   },
-  "homepage": "https://github.com/tarrinneal/harmony#readme"
+  "homepage": "https://github.com/tarrinneal/harmony#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
