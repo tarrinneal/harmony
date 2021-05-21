@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { Header } from './Header';
+import { LeftSidebar } from './LeftSidebar';
+import { RightSidebar } from './RightSidebar';
+import { MainBody } from './MainBody';
 
 export const App = () => {
   let history = useHistory();
@@ -9,6 +12,9 @@ export const App = () => {
   return (
     <div id='page'>
       <Header />
+      <LeftSidebar />
+      <RightSidebar />
+      <MainBody />
     </div>
   );
 };

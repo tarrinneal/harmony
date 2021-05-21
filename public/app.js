@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"App\", function() { return App; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ \"./client/src/components/Header.jsx\");\n\n\n\n\nvar App = function App() {\n  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"useHistory\"])();\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"page\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_Header__WEBPACK_IMPORTED_MODULE_2__[\"Header\"], null));\n};\n\n//# sourceURL=webpack:///./client/src/components/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"App\", function() { return App; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ \"./client/src/components/Header.jsx\");\n/* harmony import */ var _LeftSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LeftSidebar */ \"./client/src/components/LeftSidebar.jsx\");\n/* harmony import */ var _RightSidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RightSidebar */ \"./client/src/components/RightSidebar.jsx\");\n/* harmony import */ var _MainBody__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MainBody */ \"./client/src/components/MainBody.jsx\");\n\n\n\n\n\n\n\nvar App = function App() {\n  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__[\"useHistory\"])();\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"page\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_Header__WEBPACK_IMPORTED_MODULE_2__[\"Header\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_LeftSidebar__WEBPACK_IMPORTED_MODULE_3__[\"LeftSidebar\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_RightSidebar__WEBPACK_IMPORTED_MODULE_4__[\"RightSidebar\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_MainBody__WEBPACK_IMPORTED_MODULE_5__[\"MainBody\"], null));\n};\n\n//# sourceURL=webpack:///./client/src/components/App.jsx?");
 
 /***/ }),
 
@@ -107,6 +107,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Header\", function() { return Header; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nvar Header = function Header() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"header\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h1\", {\n    id: \"headerText\"\n  }, \"Harmony\"));\n};\n\n//# sourceURL=webpack:///./client/src/components/Header.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/components/LeftSidebar.jsx":
+/*!***********************************************!*\
+  !*** ./client/src/components/LeftSidebar.jsx ***!
+  \***********************************************/
+/*! exports provided: LeftSidebar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"LeftSidebar\", function() { return LeftSidebar; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nvar LeftSidebar = function LeftSidebar() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"leftSidebar\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h2\", {\n    id: \"featureNavigation\"\n  }, \"Servers\"));\n};\n\n//# sourceURL=webpack:///./client/src/components/LeftSidebar.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/components/MainBody.jsx":
+/*!********************************************!*\
+  !*** ./client/src/components/MainBody.jsx ***!
+  \********************************************/
+/*! exports provided: MainBody */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MainBody\", function() { return MainBody; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nvar MainBody = function MainBody() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"mainBody\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h1\", {\n    id: \"mainBodyHeader\"\n  }, \"Server Chat\"));\n};\n\n//# sourceURL=webpack:///./client/src/components/MainBody.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/components/RightSidebar.jsx":
+/*!************************************************!*\
+  !*** ./client/src/components/RightSidebar.jsx ***!
+  \************************************************/
+/*! exports provided: RightSidebar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RightSidebar\", function() { return RightSidebar; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nvar RightSidebar = function RightSidebar() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", {\n    id: \"rightSidebar\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h2\", {\n    id: \"featureNavigation\"\n  }, \"Online Users\"));\n};\n\n//# sourceURL=webpack:///./client/src/components/RightSidebar.jsx?");
 
 /***/ }),
 
