@@ -1,3 +1,29 @@
 body {
   margin: auto;
 }
+
+#page {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 9fr;
+}
+
+#header {
+  grid-row: 1;
+  grid-column: 1 / 4;
+}
+
+#leftSidebar {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+#mainBody {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+#rightSidebar {
+  grid-row: 2;
+  grid-column: 3;
+}
