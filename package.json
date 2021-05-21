@@ -1,0 +1,19 @@
+{
+  "name": "harmony",
+  "version": "0.0.1",
+  "description": "Bringing Harmony to a discordant world",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarrinneal/harmony.git"
+  },
+  "author": "Tarrin Neal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarrinneal/harmony/issues"
+  },
+  "homepage": "https://github.com/tarrinneal/harmony#readme"
+}
