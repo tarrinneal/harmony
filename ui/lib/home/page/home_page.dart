@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../../spec/spec.dart';
+import '../widget/home_button.dart';
+import '../strings.dart' as strings;
+
+final buttonLabels = [
+  strings.homeFriendsButton,
+  for(var i = 0; i < 10; i++)
+    'Friend $i',
+];
 
 class HomePage extends StatelessWidget {
   @override
@@ -19,7 +28,8 @@ class HomePage extends StatelessWidget {
       size: Size.fromWidth(Sizing.homeSideBarWidth),
       child: Column(
         children: [
-          Expanded(child: Center(child: Text('SideColumn'))),
+          for(final label in buttonLabels)
+            Expanded(child: HomeButton(label: label)),
         ],
       ),
     );
