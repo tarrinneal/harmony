@@ -6,7 +6,7 @@ import '../strings.dart' as strings;
 
 final buttonLabels = [
   strings.homeFriendsButton,
-  for(var i = 0; i < 10; i++)
+  for(var i = 1; i < 11; i++)
     'Friend $i',
 ];
 
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // TODO (Issue#7): Replace with Navgation Widget
+  // TODO (Issue#7): Replace with Navigation Widget
   Widget _buildMain(BuildContext context) {
     return Center(child: Text('Main Content'));
   }
