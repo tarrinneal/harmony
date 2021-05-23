@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         primaryColor: Colors.blueGrey[900],
       ),
+      //servers col
       home: HomePage(),
     );
   }

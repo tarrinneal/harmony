@@ -14,6 +14,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [],
+        title: Text(strings.homeTitle)
+      ),
       body: Row(
         children: [
           _buildSideBar(context),
