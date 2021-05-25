@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:harmony/home/home.dart';
+import 'package:harmony/spec/spec.dart';
 
-import '../../spec/spec.dart';
 import '../widget/home_button.dart';
 import '../strings.dart' as strings;
 
-import '../../home/home.dart';
 
 final serverLabels = [
   strings.appTitle,
