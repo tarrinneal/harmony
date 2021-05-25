@@ -31,7 +31,7 @@ class RootPage extends StatelessWidget {
       child: Column(
         children: [
           for(final server in serverLabels)
-            Expanded(child: HomeButton(label: server, iconData: Icons.games_outlined,)),
+            Expanded(child: HomeButton(label: server, iconData: Icons.games_outlined, focused: server == 'Harmony' ? true : false,)),
         ],
       ),
     );
