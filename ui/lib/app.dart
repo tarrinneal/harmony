@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/root/root.dart';
+import 'package:harmony/app_shell/app_shell.dart';
 
 class HarmonyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -11,7 +11,7 @@ class HarmonyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         primaryColor: Colors.blueGrey[900],
       ),
-      home: RootPage(),
+      home: AppShell(),
     );
   }
 }
