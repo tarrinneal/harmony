@@ -5,12 +5,22 @@ import './server_button.dart';
 
 final serverLabels = [
   strings.appTitle,
-  for(var i = 1; i < 11; i++)
-    'Server $i',
+  for (var i = 1; i < 11; i++) 'Server $i',
 ];
 
-class ServerSideBar extends StatelessWidget {
-  const ServerSideBar();
+class ServerSidebar extends StatefulWidget {
+  @override
+  _ServerSidebarState createState() => _ServerSidebarState();
+}
+
+class _ServerSidebarState extends State<ServerSidebar> {
+  String selected = 'Harmony';
+
+  void select(String label) {
+    setState(() {
+      selected = label;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +28,15 @@ class ServerSideBar extends StatelessWidget {
       size: Size.fromWidth(Sizing.serverSideBarWidth),
       child: Column(
         children: [
-          for(final server in serverLabels)
-            Expanded(child: ServerButton(label: server,
-            iconData: Icons.games_outlined,
-            focused: server == strings.appTitle,),),
+          for (final server in serverLabels)
+            Expanded(
+              child: ServerButton(
+                label: server,
+                iconData: Icons.games_outlined,
+                focused: server == selected,
+                onPressed: select,
+              ),
+            ),
         ],
       ),
     );

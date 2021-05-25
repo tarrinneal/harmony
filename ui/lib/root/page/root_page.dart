@@ -11,7 +11,7 @@ class RootPage extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          ServerSideBar(),
+          ServerSidebar(),
           Expanded(child: HomePage()),
         ],
       ),
