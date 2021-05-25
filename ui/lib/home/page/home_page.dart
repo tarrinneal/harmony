@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Row(
         children: [
-          _buildserverSideBar(context),
+          _buildServerSideBar(context),
           _buildSideBar(context),
           Expanded(child: _buildMain(context)),
         ],
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-   Widget _buildserverSideBar(BuildContext context) {
+   Widget _buildServerSideBar(BuildContext context) {
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
       child: Column(
