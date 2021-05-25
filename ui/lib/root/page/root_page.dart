@@ -2,15 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:harmony/home/home.dart';
 import 'package:harmony/spec/spec.dart';
 
-import '../strings.dart' as strings;
-import '../widget/home_button.dart';
-
-
-final serverLabels = [
-  strings.appTitle,
-  for(var i = 1; i < 11; i++)
-    'Server $i',
-];
+// import '../strings.dart' as strings;
+import '../widget/server_sidebar.dart';
 
 class RootPage extends StatelessWidget {
   @override
@@ -18,22 +11,12 @@ class RootPage extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          _buildserverSideBar(context),
+          ServerSideBar(),
           Expanded(child: HomePage()),
         ],
       ),
     );
   }
 
-   Widget _buildserverSideBar(BuildContext context) {
-    return SizedBox.fromSize(
-      size: Size.fromWidth(Sizing.serverSideBarWidth),
-      child: Column(
-        children: [
-          for(final server in serverLabels)
-            Expanded(child: HomeButton(label: server, iconData: Icons.games_outlined, focused: server == 'Harmony' ? true : false,)),
-        ],
-      ),
-    );
-  }
+
 }

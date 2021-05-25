@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeButton extends StatelessWidget {
-  const HomeButton({
+class ServerButton extends StatelessWidget {
+  const ServerButton({
     required this.label,
     this.iconData,
     this.focused: false,
