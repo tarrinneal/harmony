@@ -10,36 +10,14 @@ final buttonLabels = [
     'Friend $i',
 ];
 
-final serverLabels = [
-  'Home Button',
-  for(var i = 1; i < 11; i++)
-    'Server $i',
-];
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [],
-        title: Text(strings.homeTitle)
-      ),
       body: Row(
         children: [
-          _buildServerSideBar(context),
           _buildSideBar(context),
           Expanded(child: _buildMain(context)),
-        ],
-      ),
-    );
-  }
-
-   Widget _buildServerSideBar(BuildContext context) {
-    return SizedBox.fromSize(
-      size: Size.fromWidth(Sizing.serverSideBarWidth),
-      child: Column(
-        children: [
-          for(final server in serverLabels)
-            Expanded(child: HomeButton(label: server, iconData: Icons.games_outlined,)),
         ],
       ),
     );

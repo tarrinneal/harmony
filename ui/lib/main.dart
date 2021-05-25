@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blueGrey[900],
       ),
       //servers col
-      home: HomePage(),
+      home: RootPage(),
     );
   }
 }
