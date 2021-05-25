@@ -8,6 +8,7 @@
     "editor.fontFamily": "'Fira Code',Consolas, 'Courier New', monospace",
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
-    "dart.lineLength": 80
+    "dart.lineLength": 80,
+    "dart.sdkPath": "C:\\src\\flutter\\bin\\cache\\dart-sdk"
   }
 }
