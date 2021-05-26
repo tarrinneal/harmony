@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/home/home.dart';
-import 'package:harmony/spec/spec.dart';
 
-// import '../strings.dart' as strings;
 import '../widget/server_sidebar.dart';
 
-class RootPage extends StatelessWidget {
+/// `AppShell` contains the basic setup for the application.
+///
+/// It renders the ServerSidebar and contains the nested routes for the Harmony
+/// App
+class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +19,4 @@ class RootPage extends StatelessWidget {
       ),
     );
   }
-
-
 }
