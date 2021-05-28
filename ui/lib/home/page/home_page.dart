@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harmony/server/page/server_page.dart';
 import 'package:harmony/spec/spec.dart';
 
 import '../strings.dart' as strings;
@@ -37,6 +38,6 @@ class HomePage extends StatelessWidget {
 
   // TODO (Issue#7): Replace with Navigation Widget
   Widget _buildMain(BuildContext context) {
-    return Center(child: Text('Main Content'));
+    return Center(child: ServerPage());
   }
 }
