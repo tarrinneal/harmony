@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../widget/message.dart';
 
 final messages = [
-  for (var i = 1; i < 11; i++)
+  for (var i = 1; i < 15; i++)
     {
       'user': 'user $i',
       'timestamp': DateTime.now().toString(),
