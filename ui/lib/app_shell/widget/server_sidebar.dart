@@ -28,7 +28,7 @@ class _ServerSidebarState extends State<ServerSidebar> {
   @override
   Widget build(BuildContext context) {
   final Widget logoSvg =
-      SvgPicture.asset(assetName, semanticsLabel: 'Harmony Logo', fit: BoxFit.scaleDown, height: 92,);
+      SvgPicture.asset(assetName, semanticsLabel: 'Harmony Logo', fit: BoxFit.scaleDown, height: Sizing.serverSideBarWidth,);
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
       child: Column(
