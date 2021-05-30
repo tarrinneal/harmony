@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:harmony/spec/spec.dart';
-
-// import '../strings.dart' as strings;
 import '../widget/message.dart';
 
 final messages = [
