@@ -26,18 +26,4 @@ class ServerPage extends StatelessWidget {
             }))
       );
   }
-
-
-  // Widget _buildServerMessages(BuildContext context) {
-  //   return Flexible(
-  //       child: ListView.builder(
-  //           itemCount: messages.length,
-  //           itemBuilder: (BuildContext context, int i) {
-  //             return Container(
-  //               //needs to be dynamically sized
-  //                 height: 100,
-  //                 width: 1000,
-  //                 child: Message(message: messages[i]));
-  //           }));
-  // }
 }
