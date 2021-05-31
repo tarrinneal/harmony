@@ -14,7 +14,7 @@ class Message extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            Text(message.user),
+            Text(message.user + ' '),
             Text(message.timestamp.toString())
           ],
           ),
