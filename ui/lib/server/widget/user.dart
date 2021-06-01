@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/server/server.dart';
+import '../models/user.dart';
 
 class UserStatus extends StatelessWidget {
   const UserStatus({required this.user});
@@ -12,10 +12,7 @@ class UserStatus extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(user.user),
-          Text(user.status ? 'Online' : 'Offline')
-        ],
+        children: [Text(user.user), Text(user.status ? 'Online' : 'Offline')],
       ),
     );
   }
