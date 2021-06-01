@@ -34,9 +34,7 @@ class ServerPage extends StatelessWidget {
             child: Container(
               child: ListView.builder(
                 itemCount: messages.length,
-                itemBuilder: (BuildContext context, int i) {
-                  return Message(message: messages[i]);
-                },
+                itemBuilder: (context, i) => Message(message: messages[i]),
               ),
             ),
           ),
@@ -44,9 +42,7 @@ class ServerPage extends StatelessWidget {
             width: Sizing.homeSideBarWidth,
             child: ListView.builder(
               itemCount: users.length,
-              itemBuilder: (BuildContext context, int j) {
-                return UserStatus(user: users[j]);
-              },
+              itemBuilder: (context, i) => UserStatus(user: users[i]),
             ),
           ),
         ],
