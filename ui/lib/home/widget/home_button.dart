@@ -11,6 +11,7 @@ class HomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
+      style: TextButton.styleFrom(alignment: Alignment.centerLeft, padding: EdgeInsets.fromLTRB(25, 10, 0, 20)),
       icon: Icon(iconData ?? Icons.person_outline),
       onPressed: () => print('Button $label was pressed'),
       label: Text(label),
