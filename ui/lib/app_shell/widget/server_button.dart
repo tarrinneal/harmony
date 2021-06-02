@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:harmony/spec/spec.dart';
+
+import '../../roundedHexagonalClipper.dart';
 
 class ServerButton extends StatelessWidget {
   const ServerButton({
@@ -15,15 +18,34 @@ class ServerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      icon: Icon(iconData ?? Icons.person_outline),
-      onPressed: () => onPressed(label),
-      label: Text(label),
-      style: TextButton.styleFrom(
-        backgroundColor: focused
-            ? Theme.of(context).backgroundColor
-            : Theme.of(context).primaryColorLight,
+    return SizedBox.fromSize(
+      size: Size.square(Sizing.serverSideBarWidth),
+      child: Container(
+        child: TextButton(
+          onPressed: () {
+            onPressed(label);
+          },
+          style: TextButton.styleFrom(
+            backgroundColor: focused
+                ? Theme.of(context).backgroundColor
+                : Theme.of(context).primaryColorLight,
+          ),
+          child: ClipPath(
+            clipper: RoundedHexagonalClipper(),
+            child: Image(image: AssetImage('sloth.jpg')),
+          ),
+        ),
       ),
+
+      // TextButton.icon(
+      //   icon: Icon(iconData ?? Icons.person_outline),
+      //   onPressed: () => onPressed(label),
+      //   label: Text(label),
+      //   style: TextButton.styleFrom(
+      //     backgroundColor: focused
+      //         ? Theme.of(context).backgroundColor
+      //         : Theme.of(context).primaryColorLight,
+      // ),
     );
   }
 }
