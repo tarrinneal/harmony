@@ -7,8 +7,7 @@ import '../widget/home_button.dart';
 
 final buttonLabels = [
   strings.homeFriendsButton,
-  for(var i = 1; i < 110; i++)
-    'Friend $i',
+  for (var i = 1; i < 110; i++) 'Friend $i',
 ];
 
 class HomePage extends StatelessWidget {
@@ -27,11 +26,8 @@ class HomePage extends StatelessWidget {
   Widget _buildSideBar(BuildContext context) {
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.homeSideBarWidth),
-      child: ListView(
-        children: [
-          for(final label in buttonLabels)
-            Container(child: HomeButton(label: label)),
-        ],
+      child: ListView.builder(
+        itemBuilder: (context, i) => HomeButton(label: buttonLabels[i]),
       ),
     );
   }
