@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';import 'package:flutter_svg/flutter_svg.dart';
+import 'package:harmony/spec/spec.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import './server_button.dart';
 
@@ -33,20 +34,17 @@ class _ServerSidebarState extends State<ServerSidebar> {
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
       child: ListView.builder(
-          itemCount: serverLabels.length + 1,
-          itemBuilder: (context, i) => Column(
-                children: [
-                  SizedBox(height: 10),
-                  ServerButton(
-                    label: i == 0 ? '' : serverLabels[i - 1],
-                    focused: i == 0
-                        ? selected == ''
-                        : serverLabels[i - 1] == selected,
-                    onPressed: select,
-                    child: i == 0 ? logoSvg : slothJpg
-                  ),
-                ],
-              )),
+        itemCount: serverLabels.length + 1,
+        itemBuilder: (context, i) => Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: ServerButton(
+              label: i == 0 ? '' : serverLabels[i - 1],
+              focused:
+                  i == 0 ? selected == '' : serverLabels[i - 1] == selected,
+              onPressed: select,
+              child: i == 0 ? logoSvg : slothJpg),
+        ),
+      ),
     );
   }
 }
