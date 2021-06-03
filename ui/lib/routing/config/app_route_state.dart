@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+import 'harmony_page.dart';
+
 /// This class represents the routing state for the application
 ///
 /// AppStart ==> SplashPage
@@ -55,11 +57,4 @@ class AppRouteState with ChangeNotifier {
       selectedPage = previous;
     }
   }
-}
-
-enum HarmonyPage {
-  splash,
-  welcome,
-  server,
-  unknown,
 }
