@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:harmony/spec/spec.dart';
 
 import './server_button.dart';
 

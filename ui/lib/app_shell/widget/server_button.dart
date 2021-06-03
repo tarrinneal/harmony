@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/spec/spec.dart';
 
-
 import '../../roundedHexagonalClipper.dart';
 
 final String assetName = './Harmony.svg';
