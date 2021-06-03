@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../strings.dart' as strings;
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:harmony/spec/spec.dart';
+
 import './server_button.dart';
 
 final serverLabels = [
-  strings.appTitle,
   for (var i = 1; i < 11; i++) 'Server $i',
 ];
 
@@ -14,7 +14,7 @@ class ServerSidebar extends StatefulWidget {
 }
 
 class _ServerSidebarState extends State<ServerSidebar> {
-  String selected = 'Harmony';
+  String selected = '';
 
   void select(String label) {
     setState(() {
@@ -24,20 +24,26 @@ class _ServerSidebarState extends State<ServerSidebar> {
 
   @override
   Widget build(BuildContext context) {
+    final logoSvg = SvgPicture.asset(
+      assetName,
+      semanticsLabel: 'Harmony Logo',
+      fit: BoxFit.scaleDown,
+      height: Sizing.serverSideBarWidth,
+    );
+    final slothJpg = Image(image: AssetImage('sloth.jpg'));
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
-      child: Column(
-        children: [
-          for (final server in serverLabels)
-            Expanded(
-              child: ServerButton(
-                label: server,
-                iconData: Icons.games_outlined,
-                focused: server == selected,
-                onPressed: select,
-              ),
-            ),
-        ],
+      child: ListView.builder(
+        itemCount: serverLabels.length + 1,
+        itemBuilder: (context, i) => Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: ServerButton(
+              label: i == 0 ? '' : serverLabels[i - 1],
+              focused:
+                  i == 0 ? selected == '' : serverLabels[i - 1] == selected,
+              onPressed: select,
+              child: i == 0 ? logoSvg : slothJpg),
+        ),
       ),
     );
   }
