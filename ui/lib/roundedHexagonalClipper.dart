@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RoundedHexagonalClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path()
+    return Path()
       ..moveTo(size.width / 40, (size.height / 5) * 3)
       ..lineTo((size.width / 40) * 8, (size.height / 40) * 36)
       ..quadraticBezierTo((size.width / 40) * 11, size.height, (size.width / 40) * 15, size.height)
@@ -18,7 +18,6 @@ class RoundedHexagonalClipper extends CustomClipper<Path> {
       ..lineTo(size.width / 40, (size.height / 5) * 2)
       ..quadraticBezierTo(-size.width / 40, size.height / 2, size.width / 40, (size.height / 5) * 3)
       ..close();
-    return path;
   }
 
   @override
