@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:harmony/app_shell/app_shell.dart';
-import 'package:harmony/routing/config/harmony_route_path.dart';
-import 'package:harmony/routing/config/app_route_state.dart';
 import 'package:harmony/spec/spec.dart';
+
+import '../config/app_route_state.dart';
+import '../config/harmony_page.dart';
+import '../config/harmony_route_path.dart';
 
 final pageToPathMap = <HarmonyPage, HarmonyRoutePath>{
   HarmonyPage.unknown: UnknownRoutePath(),
