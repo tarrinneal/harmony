@@ -1,29 +1,120 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:harmony/routing/config/harmony_route_path.dart';
+import 'package:harmony/routing/config/app_route_state.dart';
+
+final pageToPathMap = <HarmonyPage, HarmonyRoutePath>{
+  HarmonyPage.unknown: UnknownRoutePath(),
+  HarmonyPage.welcome: WelcomeRotuePath(),
+  HarmonyPage.splash: SplashRoutePath(),
+};
 
 class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
-    with ChangeNotifier, PopNavigatorRouterDelegateMixin<HarmonyRoutePath> {
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
+    with PopNavigatorRouterDelegateMixin<HarmonyRoutePath>, ChangeNotifier {
+  HarmonyRouterDelegate(this.appState) {
+    appState.addListener(notifyListeners);
+  }
+
+  final AppRouteState appState;
+  GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
+
+  // Used to get a RoutePath based on the current value of Application state
   @override
-  GlobalKey<NavigatorState>? get navigatorKey => _navigatorKey;
+  HarmonyRoutePath? get currentConfiguration {
+    HarmonyRoutePath? path = pageToPathMap[appState.selectedPage];
+
+    if (path == null) {
+      if (appState.serverId == null) path = UnknownRoutePath();
+      path = AppShellRoutePath(appState.serverId!);
+    }
+    return path;
+  }
 
   @override
   Widget build(BuildContext context) {
+    bool _onPopPage(Route route, dynamic result) {
+      print('_onPopPage called');
+      appState.goBack();
+      return route.didPop(result);
+    }
+
     return Navigator(
       key: navigatorKey,
+      // TODO(#29): Refactor building pages away from gross if statments to a
+      // provided map based off of provided
+      pages: [
+        if (appState.selectedPage == HarmonyPage.unknown)
+          MaterialPage(
+            child: Scaffold(
+              body: Center(
+                child: Text('Woops Unknown'),
+              ),
+            ),
+          ),
+        if (appState.selectedPage == HarmonyPage.splash)
+          MaterialPage(
+            child: Scaffold(
+              body: Center(
+                child: TextButton(
+                  onPressed: () {
+                    appState.selectedPage = HarmonyPage.welcome;
+                  },
+                  child: Text('Splash'),
+                ),
+              ),
+            ),
+          ),
+        if (appState.selectedPage == HarmonyPage.welcome)
+          MaterialPage(
+            child: Scaffold(
+              body: Center(
+                child: TextButton(
+                  onPressed: () {
+                    appState.serverId = 'home';
+                    appState.selectedPage = HarmonyPage.server;
+                  },
+                  child: Text('Welcome to the App'),
+                ),
+              ),
+            ),
+          ),
+        if (appState.selectedPage == HarmonyPage.server)
+          MaterialPage(
+            child: Scaffold(
+              body: Center(
+                child: Text(
+                  'server ${appState.serverId}, channel ${appState.channel}',
+                ),
+              ),
+            ),
+          ),
+      ],
+      onPopPage: _onPopPage,
     );
   }
 
   @override
-  Future<void> setNewRoutePath(HarmonyRoutePath path) async {
-    if (path.isUnkown) return;
+  GlobalKey<NavigatorState>? get navigatorKey => _navigatorKey;
+
+  // Used to update Application state when provided with a RoutePath
+  @override
+  Future<void> setNewRoutePath(HarmonyRoutePath configuration) {
+    if (configuration is UnknownRoutePath) {
+      appState.selectedPage = HarmonyPage.unknown;
+    }
+
+    if (configuration is SplashRoutePath) {
+      _setPage(HarmonyPage.splash);
+    }
+
+    if (configuration is WelcomeRotuePath) {
+      _setPage(HarmonyPage.welcome);
+    }
+    if (configuration is AppShellRoutePath) _setPage(HarmonyPage.server);
+    return Future.value(null);
   }
-}
 
-class HarmonyRoutePath {
-  const HarmonyRoutePath({required this.validPaths, required this.curPath});
-
-  final List<String> validPaths;
-  final String curPath;
-
-  bool get isUnkown => validPaths.any((path) => path == curPath);
+  void _setPage(HarmonyPage page) {
+    appState.selectedPage = page;
+  }
 }
