@@ -31,7 +31,7 @@ class HarmonyRouteInformationParser
     }
 
     if (segments.contains('server')) {
-      final serverId = segments.length > 1 ? segments.elementAt(1) : '/home';
+      final serverId = segments.length > 1 ? segments.elementAt(1) : 'home';
       return SynchronousFuture(AppShellRoutePath(serverId));
     }
 
@@ -41,7 +41,7 @@ class HarmonyRouteInformationParser
   @override
   RouteInformation? restoreRouteInformation(HarmonyRoutePath configuration) {
     if (configuration is UnknownRoutePath)
-      return RouteInformation(location: '404');
+      return RouteInformation(location: '/woops');
 
     if (configuration is WelcomeRotuePath || configuration is SplashRoutePath) {
       return RouteInformation(location: '/welcome');
