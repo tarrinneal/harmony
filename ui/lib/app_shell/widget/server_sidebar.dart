@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../strings.dart' as strings;
 import 'package:harmony/spec/spec.dart';
+
 import './server_button.dart';
 
 final serverLabels = [
   for (var i = 1; i < 11; i++) 'Server $i',
 ];
-
-final String assetName = './Harmony.svg';
 
 class ServerSidebar extends StatefulWidget {
   @override
@@ -33,26 +30,20 @@ class _ServerSidebarState extends State<ServerSidebar> {
       fit: BoxFit.scaleDown,
       height: Sizing.serverSideBarWidth,
     );
+    final slothJpg = Image(image: AssetImage('sloth.jpg'));
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
-      child: Column(
-        children: [
-          TextButton(
-            onPressed: () {
-              select('');
-            },
-            child: logoSvg,
-          ),
-          for (final server in serverLabels)
-            Expanded(
-              child: ServerButton(
-                label: server,
-                iconData: Icons.games_outlined,
-                focused: server == selected,
-                onPressed: select,
-              ),
-            ),
-        ],
+      child: ListView.builder(
+        itemCount: serverLabels.length + 1,
+        itemBuilder: (context, i) => Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: ServerButton(
+              label: i == 0 ? '' : serverLabels[i - 1],
+              focused:
+                  i == 0 ? selected == '' : serverLabels[i - 1] == selected,
+              onPressed: select,
+              child: i == 0 ? logoSvg : slothJpg),
+        ),
       ),
     );
   }
