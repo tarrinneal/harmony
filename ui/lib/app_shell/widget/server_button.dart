@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/spec/spec.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 import '../../roundedHexagonalClipper.dart';
 
@@ -11,59 +11,32 @@ class ServerButton extends StatelessWidget {
     required this.focused,
     required this.label,
     required this.onPressed,
-    required this.i,
-    this.iconData,
+    required this.child,
   });
 
   final String label;
   final bool focused;
   final void Function(String) onPressed;
-  final int i;
-  final IconData? iconData;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final logoSvg = SvgPicture.asset(
-      assetName,
-      semanticsLabel: 'Harmony Logo',
-      fit: BoxFit.scaleDown,
-      height: Sizing.serverSideBarWidth,
-    );
     return SizedBox.fromSize(
       size: Size.square(Sizing.serverSideBarWidth),
-      child: i == 0 ? Container(
-            child: TextButton(
+      child: TextButton(
+              onPressed: () {
+                onPressed(label);
+              },
               style: TextButton.styleFrom(
                 backgroundColor: focused
                     ? Theme.of(context).backgroundColor
                     : Theme.of(context).primaryColorLight,
               ),
-              onPressed: () {
-                onPressed('');
-              },
               child: ClipPath(
                 clipper: RoundedHexagonalClipper(),
-                child: logoSvg,
+                child: child,
               ),
             ),
-          ) : Container(
-        child: TextButton(
-          onPressed: () {
-            onPressed(label);
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: focused
-                ? Theme.of(context).backgroundColor
-                : Theme.of(context).primaryColorLight,
-          ),
-          child: ClipPath(
-            clipper: RoundedHexagonalClipper(),
-            child: Image(image: AssetImage('sloth.jpg')),
-          ),
-        ),
-      ),
     );
   }
 }
-
-

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';
+import 'package:harmony/spec/spec.dart';import 'package:flutter_svg/flutter_svg.dart';
 
 import './server_button.dart';
 
@@ -23,27 +23,30 @@ class _ServerSidebarState extends State<ServerSidebar> {
 
   @override
   Widget build(BuildContext context) {
-
+    final logoSvg = SvgPicture.asset(
+      assetName,
+      semanticsLabel: 'Harmony Logo',
+      fit: BoxFit.scaleDown,
+      height: Sizing.serverSideBarWidth,
+    );
+    final slothJpg = Image(image: AssetImage('sloth.jpg'));
     return SizedBox.fromSize(
       size: Size.fromWidth(Sizing.serverSideBarWidth),
       child: ListView.builder(
-        itemCount: serverLabels.length + 1,
-        itemBuilder: (context, i) =>
-            Column(
-              children: [
-                SizedBox(height: 10),
-                ServerButton(
-                  label: i == 0 ? '' : serverLabels[i - 1],
-                  iconData: Icons.games_outlined,
-                  focused: i == 0 ? selected == '' : serverLabels[i - 1] == selected,
-                  onPressed: select,
-                  i: i,
-                ),
-              ],
-            )
-
-      ),
+          itemCount: serverLabels.length + 1,
+          itemBuilder: (context, i) => Column(
+                children: [
+                  SizedBox(height: 10),
+                  ServerButton(
+                    label: i == 0 ? '' : serverLabels[i - 1],
+                    focused: i == 0
+                        ? selected == ''
+                        : serverLabels[i - 1] == selected,
+                    onPressed: select,
+                    child: i == 0 ? logoSvg : slothJpg
+                  ),
+                ],
+              )),
     );
   }
 }
-
