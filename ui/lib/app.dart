@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/auth/auth.dart';
 import 'package:harmony/routing/routing.dart';
+import 'package:harmony/state/state.dart';
 import 'package:provider/provider.dart';
 
 class HarmonyApp extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/splash/splash.dart';
+import 'package:harmony/state/state.dart';
 
 import 'app_route_arguments.dart';
-import 'harmony_page.dart';
 
 typedef ArgumentBuilder<T extends PageBuilderArguments> = Widget Function(
   BuildContext,

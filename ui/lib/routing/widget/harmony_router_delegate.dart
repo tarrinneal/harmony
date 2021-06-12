@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:harmony/app_shell/app_shell.dart';
-import 'package:harmony/routing/routing.dart';
 import 'package:harmony/splash/splash.dart';
+import 'package:harmony/state/state.dart';
 
-import '../config/app_route_state.dart';
-import '../config/harmony_page.dart';
 import '../config/harmony_route_path.dart';
 
 final pageToPathMap = <HarmonyPage, HarmonyRoutePath>{
