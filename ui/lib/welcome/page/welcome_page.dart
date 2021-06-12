@@ -20,6 +20,7 @@ class WelcomePage extends StatelessWidget {
             title: 'Login',
             onPressed: () {
               print('go to login page');
+              appState.pushPage(HarmonyPage.login);
             },
           ),
         ],
@@ -27,7 +28,7 @@ class WelcomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            appState.pushPage(HarmonyPage.server, 'home');
+            appState.pushPage(HarmonyPage.server, nextServerId: 'home');
           },
           child: Text('Go to AppShell'),
         ),
