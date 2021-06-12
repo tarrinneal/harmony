@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:harmony/app_shell/app_shell.dart';
+import 'package:harmony/routing/routing.dart';
 import 'package:harmony/splash/splash.dart';
 
 import '../config/app_route_state.dart';
@@ -42,47 +43,50 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
       return route.didPop(result);
     }
 
-    return Navigator(
-      key: navigatorKey,
-      // TODO(#29): Refactor building pages away from gross if statments to a
-      // provided map based off of provided
-      pages: [
-        if (appState.selectedPage == HarmonyPage.unknown)
-          MaterialPage(
-            child: Scaffold(
-              body: Center(
-                child: Text('Woops Unknown'),
-              ),
-            ),
-          ),
-        if (appState.selectedPage == HarmonyPage.splash)
-          MaterialPage(
-            child: SplashPage(
-              onComplete: () {
-                appState.selectedPage = HarmonyPage.welcome;
-              },
-            ),
-          ),
-        if (appState.selectedPage == HarmonyPage.welcome)
-          MaterialPage(
-            child: Scaffold(
-              body: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    appState.serverId = 'home';
-                    appState.selectedPage = HarmonyPage.server;
-                  },
-                  child: Text('Go to AppShell'),
+    return AppRouteScope(
+      appState,
+      child: Navigator(
+        key: navigatorKey,
+        // TODO(#29): Refactor building pages away from gross if statments to a
+        // provided map based off of provided
+        pages: [
+          if (appState.selectedPage == HarmonyPage.unknown)
+            MaterialPage(
+              child: Scaffold(
+                body: Center(
+                  child: Text('Woops Unknown'),
                 ),
               ),
             ),
-          ),
-        if (appState.selectedPage == HarmonyPage.server)
-          MaterialPage(
-            child: AppShell(),
-          ),
-      ],
-      onPopPage: _onPopPage,
+          if (appState.selectedPage == HarmonyPage.splash)
+            MaterialPage(
+              child: SplashPage(
+                onComplete: () {
+                  appState.selectedPage = HarmonyPage.welcome;
+                },
+              ),
+            ),
+          if (appState.selectedPage == HarmonyPage.welcome)
+            MaterialPage(
+              child: Scaffold(
+                body: Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      appState.serverId = 'home';
+                      appState.selectedPage = HarmonyPage.server;
+                    },
+                    child: Text('Go to AppShell'),
+                  ),
+                ),
+              ),
+            ),
+          if (appState.selectedPage == HarmonyPage.server)
+            MaterialPage(
+              child: AppShell(),
+            ),
+        ],
+        onPopPage: _onPopPage,
+      ),
     );
   }
 
@@ -109,5 +113,25 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
 
   void _setPage(HarmonyPage page) {
     appState.selectedPage = page;
+  }
+}
+
+class AppRouteScope extends InheritedWidget {
+  const AppRouteScope(this.data, {Key? key, required Widget child})
+      : super(key: key, child: child);
+
+  final AppRouteState data;
+
+  static AppRouteState of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<AppRouteScope>();
+
+    assert(scope != null);
+    return scope!.data;
+  }
+
+  // TODO(): Replace by comparing oldWidget.data to current data.
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return true;
   }
 }
