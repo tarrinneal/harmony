@@ -36,6 +36,8 @@ class LoginFormState extends State<LoginForm> {
                     : 'Password must be 8 characters or longer');
               },
               obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
               decoration: const InputDecoration(labelText: 'Password'),
             ),
             ElevatedButton(
