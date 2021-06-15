@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
             height: Sizing.serverSideBarWidth,
           ),
           Container(
-            child: LoginForm(label: label),
+            child: LoginForm(),
           ),
         ],
       ),
