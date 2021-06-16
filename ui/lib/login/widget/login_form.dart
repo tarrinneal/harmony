@@ -7,9 +7,8 @@ class LoginForm extends StatefulWidget {
 
   final Function onSubmit;
   @override
-  LoginFormState createState() {
-    return LoginFormState(onSubmit: onSubmit);
-  }
+  LoginFormState createState() => LoginFormState(onSubmit: onSubmit);
+
 }
 
 class LoginFormState extends State<LoginForm> {
@@ -17,6 +16,8 @@ class LoginFormState extends State<LoginForm> {
     required this.onSubmit,
   });
 
+  final emailValidator = RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   final Function onSubmit;
   final _formKey = GlobalKey<FormState>();
 
@@ -35,9 +36,7 @@ class LoginFormState extends State<LoginForm> {
                 width: 300,
                 child: TextFormField(
                   validator: (String? value) {
-                    return (value != null &&
-                            RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                .hasMatch(value)
+                    return (value != null && emailValidator.hasMatch(value)
                         ? null
                         : 'Not a valid email');
                   },
