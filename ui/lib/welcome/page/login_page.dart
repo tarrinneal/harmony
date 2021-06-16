@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 // import 'package:harmony/auth/auth.dart';
 import 'package:harmony/spec/spec.dart';
+import 'package:harmony/welcome/widget/auth_form.dart';
 // import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  void _handleSubmit(String email, String password) {}
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,7 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ConstrainedBox(
-                constraints: BoxConstraints.tight(Size(300, 200)),
-                child: Container(color: Colors.deepPurple),
-              ),
+              AuthForm(title: 'Already One of Us!', onSubmit: _handleSubmit)
             ],
           ),
         ),
