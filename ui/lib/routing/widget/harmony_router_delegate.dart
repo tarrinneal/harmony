@@ -70,8 +70,9 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
           if (appState.selectedPage == HarmonyPage.welcome)
             MaterialPage(
               child: Scaffold(
-                body: LoginPage()
-              ),
+                  body: LoginPage(
+                onSubmit: () => {appState.selectedPage = HarmonyPage.server},
+              )),
             ),
           if (appState.selectedPage == HarmonyPage.server)
             MaterialPage(

@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({
+    required this.onSubmit,
+  });
+
+  final Function onSubmit;
   @override
   LoginFormState createState() {
-    return LoginFormState();
+    return LoginFormState(onSubmit: onSubmit);
   }
 }
 
 class LoginFormState extends State<LoginForm> {
+  LoginFormState({
+    required this.onSubmit,
+  });
+
+  final Function onSubmit;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -17,6 +27,7 @@ class LoginFormState extends State<LoginForm> {
         alignment: Alignment.center,
         fit: BoxFit.cover,
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -50,7 +61,7 @@ class LoginFormState extends State<LoginForm> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    //auth
+                    onSubmit();
                   }
                 },
                 child: Text('Submit'),
