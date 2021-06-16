@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:harmony/routing/config/harmony_page.dart';
+import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 
 import '../widget/login_form.dart';
 
@@ -25,7 +27,10 @@ class LoginPage extends StatelessWidget {
             semanticsLabel: 'Harmony Logo',
             fit: BoxFit.fill,
           ),
-          LoginForm(onSubmit: onSubmit),
+          LoginForm(
+              onSubmit: () => {
+                    AppRouteScope.of(context).selectedPage = HarmonyPage.server
+                  }),
         ],
       ),
     );
