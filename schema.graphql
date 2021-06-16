@@ -2,7 +2,7 @@ type Server  @withSubscription {
   id: ID!
   name: String! @search
   channels: [Channel]
-  members: [User]
+  members: [User] @hasInverse(field: servers)
   owner: User!
   allowGuests: Boolean!
   emotes: [Emote]
@@ -50,9 +50,9 @@ type User  @withSubscription {
   email: String!
   displayName: String! @search
   avatar: String
-  servers: [Server]
+  servers: [Server] @hasInverse(field: members)
   serverInfo: [ServerInfo]
-  friends: [User]
+  friends: [User] @hasInverse(field: friends)
 }
 
 type ServerInfo  @withSubscription {
