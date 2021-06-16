@@ -27,9 +27,7 @@ class LoginPage extends StatelessWidget {
             semanticsLabel: 'Harmony Logo',
             fit: BoxFit.fill,
           ),
-          Container(
-            child: LoginForm(onSubmit: onSubmit),
-          ),
+          LoginForm(onSubmit: onSubmit),
         ],
       ),
     );
