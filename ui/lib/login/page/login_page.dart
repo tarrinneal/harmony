@@ -9,14 +9,16 @@ final String assetName = './Harmony.svg';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return FractionallySizedBox(
+      heightFactor: 1,
+      widthFactor: 1,
+      child: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           SvgPicture.asset(
             assetName,
             semanticsLabel: 'Harmony Logo',
-            fit: BoxFit.scaleDown,
-            height: Sizing.serverSideBarWidth,
+            fit: BoxFit.fill,
           ),
           Container(
             child: LoginForm(),

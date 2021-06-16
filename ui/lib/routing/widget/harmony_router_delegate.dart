@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:harmony/app_shell/app_shell.dart';
 import 'package:harmony/routing/routing.dart';
 import 'package:harmony/splash/splash.dart';
+import 'package:harmony/login/login.dart';
 
 import '../config/app_route_state.dart';
 import '../config/harmony_page.dart';
@@ -69,15 +70,7 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
           if (appState.selectedPage == HarmonyPage.welcome)
             MaterialPage(
               child: Scaffold(
-                body: Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      appState.serverId = 'home';
-                      appState.selectedPage = HarmonyPage.server;
-                    },
-                    child: Text('Go to AppShell'),
-                  ),
-                ),
+                body: LoginPage()
               ),
             ),
           if (appState.selectedPage == HarmonyPage.server)
