@@ -57,4 +57,9 @@ class AppRouteState with ChangeNotifier {
       selectedPage = previous;
     }
   }
+
+  void pushPage(HarmonyPage page, {String? nextServerId}) {
+    if (nextServerId != null) serverId = nextServerId;
+    selectedPage = page;
+  }
 }

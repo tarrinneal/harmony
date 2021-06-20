@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harmony/auth/auth.dart';
+import 'package:mockito/mockito.dart';
 
 import 'package:harmony/routing/config/harmony_route_information_parser.dart';
 import 'package:harmony/routing/config/harmony_route_path.dart';
@@ -12,7 +14,7 @@ void main() {
         final routeInfo = RouteInformation(location: '/');
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<SplashRoutePath>());
@@ -23,7 +25,7 @@ void main() {
         final routeInfo = RouteInformation();
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<SplashRoutePath>());
@@ -36,7 +38,7 @@ void main() {
         final routeInfo = RouteInformation(location: '/welcome');
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<WelcomeRotuePath>());
@@ -49,7 +51,7 @@ void main() {
         final routeInfo = RouteInformation(location: '/welcome/2');
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<UnknownRoutePath>());
@@ -63,7 +65,7 @@ void main() {
         );
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<AppShellRoutePath>());
@@ -78,7 +80,7 @@ void main() {
         final routeInfo = RouteInformation(location: '/server');
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<AppShellRoutePath>());
@@ -91,7 +93,7 @@ void main() {
         final routeInfo = RouteInformation(location: '/asdfajk;sdfa/asdjfiap');
 
         // Act
-        final routePath = await _infoParser.parseRouteInformation(routeInfo);
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
         expect(routePath, isA<UnknownRoutePath>());
@@ -101,7 +103,7 @@ void main() {
     group('.restoreRouteInformation', () {
       test('returns information with /woops location for UnknownRoute', () {
         // Arrange/Act
-        final routeInfo = _infoParser.restoreRouteInformation(
+        final routeInfo = _buildParser().restoreRouteInformation(
           UnknownRoutePath(),
         );
 
@@ -114,10 +116,10 @@ void main() {
           'returns information with /welcome location for WelcomeRoute and '
           'SplashRoute', () {
         // Arrange/Act
-        final splashRouteInfo = _infoParser.restoreRouteInformation(
+        final splashRouteInfo = _buildParser().restoreRouteInformation(
           SplashRoutePath(),
         );
-        final welcomeRouteInfo = _infoParser.restoreRouteInformation(
+        final welcomeRouteInfo = _buildParser().restoreRouteInformation(
           SplashRoutePath(),
         );
 
@@ -133,10 +135,10 @@ void main() {
         // Arrange
         final serverId = 'asdfasdf';
         // Act
-        final homeRouteInfo = _infoParser.restoreRouteInformation(
+        final homeRouteInfo = _buildParser().restoreRouteInformation(
           AppShellRoutePath('home'),
         );
-        final serverRouteInfo = _infoParser.restoreRouteInformation(
+        final serverRouteInfo = _buildParser().restoreRouteInformation(
           AppShellRoutePath(serverId),
         );
 
@@ -150,6 +152,20 @@ void main() {
   });
 }
 
+class _FakeAuthService extends Fake implements AuthService {
+  _FakeAuthService({bool loggedIn = false}) : _loggedIn = loggedIn;
+  final bool _loggedIn;
+
+  @override
+  Future<bool> get loggedIn async => _loggedIn;
+}
+
 // Create an instance for the file since there is no internal state kept,
 // there's no need to reset it for each test.
-final _infoParser = HarmonyRouteInformationParser();
+HarmonyRouteInformationParser _buildParser({
+  AuthService? authService,
+}) {
+  return HarmonyRouteInformationParser(
+    authService: authService ?? _FakeAuthService(),
+  );
+}
