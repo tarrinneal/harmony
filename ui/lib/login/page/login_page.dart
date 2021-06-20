@@ -22,9 +22,9 @@ class LoginPage extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           LoginForm(
-              onSubmit: () => {
-                    AppRouteScope.of(context).selectedPage = HarmonyPage.server
-                  }),
+            onSubmit: () =>
+                {AppRouteScope.of(context).selectedPage = HarmonyPage.server},
+          ),
         ],
       ),
     );
