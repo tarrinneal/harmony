@@ -12,7 +12,6 @@ final pageToPathMap = <HarmonyPage, HarmonyRoutePath>{
   HarmonyPage.unknown: UnknownRoutePath(),
   HarmonyPage.welcome: WelcomeRotuePath(),
   HarmonyPage.splash: SplashRoutePath(),
-  HarmonyPage.login: LoginRoutePath(),
 };
 
 class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
