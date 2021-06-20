@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:harmony/routing/config/harmony_page.dart';
+import 'package:harmony/state/config/harmony_page.dart';
 import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 
 import '../widget/login_form.dart';
@@ -8,12 +8,6 @@ import '../widget/login_form.dart';
 final String assetName = './Harmony.svg';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({
-    required this.onSubmit,
-  });
-
-  final Function onSubmit;
-
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(

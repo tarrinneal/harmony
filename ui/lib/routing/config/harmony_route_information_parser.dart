@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:harmony/auth/auth.dart';
 import 'package:harmony/routing/config/harmony_route_path.dart';
 
 /// HarmonyRouteInformation Parser parses and restores path information the
@@ -18,15 +19,19 @@ import 'package:harmony/routing/config/harmony_route_path.dart';
 ///  to display a selected channel within the server
 class HarmonyRouteInformationParser
     extends RouteInformationParser<HarmonyRoutePath> {
+  const HarmonyRouteInformationParser({required this.authService});
+  final AuthService authService;
+  // TODO(#40): Handle routing for the Login and Registration flows.
   @override
   Future<HarmonyRoutePath> parseRouteInformation(
     RouteInformation routeInformation,
-  ) {
+  ) async {
     final segments = Uri.parse(routeInformation.location ?? '/').pathSegments;
     if (segments.isEmpty) return SynchronousFuture(SplashRoutePath());
 
     // TODO(#31): Attempt user Authentication at this junction?
-    if (segments.length == 1 && segments.first == 'welcome') {
+    final loggedIn = await authService.loggedIn;
+    if (!loggedIn && segments.length == 1 && segments.first == 'welcome') {
       return SynchronousFuture(WelcomeRotuePath());
     }
 
