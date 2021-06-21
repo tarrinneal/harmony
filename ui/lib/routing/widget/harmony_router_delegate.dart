@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:harmony/app_shell/app_shell.dart';
 import 'package:harmony/splash/splash.dart';
+import 'package:harmony/login/login.dart';
 import 'package:harmony/state/state.dart';
 import 'package:harmony/welcome/welcome.dart';
 
@@ -71,7 +72,7 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
             ),
           if (appState.selectedPage == HarmonyPage.login)
             MaterialPage(
-              child: Scaffold(body: Center(child: Text('Login'))),
+              child: LoginPage(),
             ),
           if (appState.selectedPage == HarmonyPage.server)
             MaterialPage(
