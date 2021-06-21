@@ -100,6 +100,7 @@ class _FakeAuthService implements AuthService {
   Future<bool> get loggedIn async => _loggedIn;
 }
 
+// TODO(#41): Implement DefaultAuthService.
 /// Default implementation of [AuthService] that provides default
 /// implementations for auth providers.
 class _DefaultAuthService implements AuthService {
