@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';
+import 'package:h_spec/spec.dart';
 
 class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const WelcomeAppBar({
