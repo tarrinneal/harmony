@@ -4,6 +4,8 @@ import 'package:harmony/routing/routing.dart';
 import 'package:harmony/state/state.dart';
 import 'package:provider/provider.dart';
 
+import 'keyword.dart' as keyword;
+
 class HarmonyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -17,7 +19,7 @@ class HarmonyApp extends StatelessWidget {
           authenticated: false,
         ),
       ),
-      title: 'Harmony',
+      title: keyword.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         primaryColor: Colors.blueGrey[900],
