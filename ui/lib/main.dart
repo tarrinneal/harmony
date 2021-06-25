@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     Provider<AuthService>(
-      create: (context) => AuthService.fake(),
+      create: (context) => AuthServiceFactory.fake(),
       child: HarmonyApp(),
     ),
   );
