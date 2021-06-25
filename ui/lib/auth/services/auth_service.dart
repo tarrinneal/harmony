@@ -12,6 +12,7 @@ abstract class AuthService {
   Future<bool> register({
     required String email,
     required String password,
+    required String displayName,
   });
   Future<bool> logout();
   Future<User?> get user;

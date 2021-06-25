@@ -69,6 +69,7 @@ class FakeAuthService implements AuthService {
   Future<bool> register({
     required String email,
     required String password,
+    required String displayName,
   }) async {
     if (password != fakePassword) return false;
     _user = _FakeUser(email: email);

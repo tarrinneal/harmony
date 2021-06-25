@@ -5,20 +5,51 @@ import '../models/auth_provider.dart';
 import '../models/user.dart';
 
 class FirebaseAuthService implements AuthService {
-  const FirebaseAuthService(this._auth);
+  FirebaseAuthService(this._auth);
   final fb.FirebaseAuth _auth;
+  User? _user;
   @override
   // TODO: implement loggedIn
-  Future<bool> get loggedIn => throw UnimplementedError();
+  Future<bool> get loggedIn async => _auth.currentUser != null;
 
   @override
   Future<bool> login({
     AuthProvider provider = AuthProvider.email,
     String? email,
     String? password,
-  }) {
-    // TODO: implement login
-    throw UnimplementedError();
+  }) async {
+    switch (provider) {
+      case AuthProvider.google:
+        return _handleGoogleLogin();
+      case AuthProvider.email:
+        if (email == null || password == null) return false;
+        return _handleEmailLogin(email, password);
+    }
+  }
+
+  Future<bool> _handleEmailLogin(String email, String password) async {
+    fb.UserCredential credential;
+    try {
+      credential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on fb.FirebaseAuthException catch (e) {
+      print('Error logging in with email');
+      print('Email: ${e.email}');
+      return false;
+    }
+
+    _user = User(
+      username: credential.user?.displayName ?? '',
+      email: credential.user?.email ?? '',
+    );
+    return true;
+  }
+
+  Future<bool> _handleGoogleLogin() async {
+    // _auth.signInWithPopup(GoogleAuthProvider());
+    return true;
   }
 
   @override
@@ -28,7 +59,11 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<bool> register({required String email, required String password}) {
+  Future<bool> register({
+    required String email,
+    required String password,
+    required String displayName,
+  }) {
     // TODO: implement register
     throw UnimplementedError();
   }
