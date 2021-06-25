@@ -1,5 +1,10 @@
+import 'package:flutter/foundation.dart';
+
 import '../models/user.dart';
 import '../models/auth_provider.dart';
+
+@visibleForTesting
+const fakePassword = 'fakepassword';
 
 /// [AuthService] defines the api for an object that handles the application
 /// user's authentication.

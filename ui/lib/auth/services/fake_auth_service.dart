@@ -1,15 +1,10 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-
 import 'auth_service.dart';
 import '../models/auth_provider.dart';
 import '../models/user.dart';
 
 final rnd = Random();
-
-@visibleForTesting
-const fakePassword = 'fakepassword';
 const _fakeGoogleProviderEmail = 'GoogleUser@gmail.com';
 
 class _FakeUser extends User {
