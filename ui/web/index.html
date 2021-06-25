@@ -32,6 +32,23 @@
   <!-- Firebase web sdks for the FlutterFire bindings -->
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <!-- Initialize firebase App -->
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyD61Eo4728Mk5TOUarYAuQIKGcbTu3fCuQ",
+      authDomain: "harmony-7bb0f.firebaseapp.com",
+      projectId: "harmony-7bb0f",
+      storageBucket: "harmony-7bb0f.appspot.com",
+      messagingSenderId: "284541157688",
+      appId: "1:284541157688:web:c92f6036a76ad45cdf81cd",
+      measurementId: "G-7C56K18PNQ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
