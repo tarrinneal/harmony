@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
+import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'auth_service.dart';
 import '../models/auth_provider.dart';
@@ -9,7 +11,6 @@ class FirebaseAuthService implements AuthService {
   final fb.FirebaseAuth _auth;
   User? _user;
   @override
-  // TODO: implement loggedIn
   Future<bool> get loggedIn async => _auth.currentUser != null;
 
   @override
@@ -39,23 +40,77 @@ class FirebaseAuthService implements AuthService {
       print('Email: ${e.email}');
       return false;
     }
-
-    _user = User(
-      username: credential.user?.displayName ?? '',
-      email: credential.user?.email ?? '',
-    );
+    if (!_credentialHasUser(credential)) return false;
+    await _setUser(credential);
     return true;
   }
 
+  Future<void> _setUser(fb.UserCredential credential) async {
+    _credentialHasUser(credential);
+    _user = User(
+      username: credential.user!.displayName ?? '',
+      email: credential.user!.email ?? '',
+      token: await credential.user!.getIdToken(),
+    );
+  }
+
   Future<bool> _handleGoogleLogin() async {
-    // _auth.signInWithPopup(GoogleAuthProvider());
+    return kIsWeb ? _loginWithGoogleWeb() : _loginWithGoogleMobile();
+  }
+
+  Future<bool> _loginWithGoogleWeb() async {
+    // Create a new provider
+    fb.GoogleAuthProvider googleProvider = fb.GoogleAuthProvider();
+
+    googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+    fb.UserCredential credential;
+    try {
+      // Once signed in, return the UserCredential
+      credential = await _auth.signInWithPopup(googleProvider);
+    } on fb.FirebaseAuthException catch (e) {
+      print('Error logging Google Provider on web.');
+      print('Error Message: ${e.message}');
+      return false;
+    }
+
+    if (!_credentialHasUser(credential)) return false;
+    await _setUser(credential);
+
+    return true;
+  }
+
+  Future<bool> _loginWithGoogleMobile() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser == null) return false;
+
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final oAuthCredential = fb.GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    fb.UserCredential credential;
+    try {
+      credential = await _auth.signInWithCredential(oAuthCredential);
+    } on fb.FirebaseAuthException catch (e) {
+      print('Error registering user.');
+      print('Error Code: ${e.code}');
+      print('Error Message: ${e.message}');
+      return false;
+    }
+
+    if (!_credentialHasUser(credential)) return false;
     return true;
   }
 
   @override
-  Future<bool> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<bool> logout() async {
+    await _auth.signOut();
+    return await loggedIn ? false : true;
   }
 
   @override
@@ -63,12 +118,34 @@ class FirebaseAuthService implements AuthService {
     required String email,
     required String password,
     required String displayName,
-  }) {
-    // TODO: implement register
-    throw UnimplementedError();
+  }) async {
+    fb.UserCredential credential;
+    try {
+      credential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on fb.FirebaseAuthException catch (e) {
+      print('Error registering user.');
+      print('Error Code: ${e.code}');
+      print('Error Message: ${e.message}');
+      return false;
+    }
+
+    if (!_credentialHasUser(credential)) return false;
+
+    await credential.user!.updateDisplayName(displayName);
+
+    _setUser(credential);
+
+    _user = _user!.addDisplayName(displayName);
+
+    return true;
   }
 
+  bool _credentialHasUser(fb.UserCredential credential) =>
+      credential.user != null;
+
   @override
-  // TODO: implement user
-  Future<User?> get user => throw UnimplementedError();
+  Future<User?> get user async => _user;
 }
