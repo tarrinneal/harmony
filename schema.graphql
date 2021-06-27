@@ -1,0 +1,71 @@
+type Server  @withSubscription {
+  id: ID!
+  name: String! @search
+  channels: [Channel]
+  members: [User] @hasInverse(field: servers)
+  owner: User!
+  allowGuests: Boolean!
+  emotes: [Emote]
+}
+
+type Channel  @withSubscription {
+  id: ID!
+  name: String! @search
+  type: ChannelType!
+  allowGuests: Boolean!
+  messages: [Message]
+}
+
+enum ChannelType {
+  Voice
+  Text
+}
+
+type Message  @withSubscription {
+  id: ID!
+  user: User!
+  timeStamp: DateTime
+  contents: String!
+  top: Boolean!
+  edited: Boolean!
+  updated: DateTime
+  reactions: [Reaction]
+  children: [Message]
+}
+
+type Reaction  @withSubscription {
+  id: ID!
+  emote: Emote!
+  users: [User!]
+}
+
+type Emote  {
+  id: ID!
+  name: String!
+  url: String!
+}
+
+type User  @withSubscription {
+  username: String! @id @search(by: [hash, regexp])
+  email: String!
+  displayName: String! @search
+  avatar: String
+  servers: [Server] @hasInverse(field: members)
+  serverInfo: [ServerInfo]
+  friends: [User] @hasInverse(field: friends)
+}
+
+type ServerInfo  @withSubscription {
+  id: ID!
+  server: Server!
+  joinTime: DateTime!
+  channels: [Channel]
+  memberType: MemberType!
+}
+
+enum MemberType {
+  admin
+  mod
+  member
+  untrusted
+}
