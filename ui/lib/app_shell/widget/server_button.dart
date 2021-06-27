@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';
+import 'package:h_spec/spec.dart';
 
 import '../../roundedHexagonalClipper.dart';
 
@@ -23,19 +23,19 @@ class ServerButton extends StatelessWidget {
     return SizedBox.fromSize(
       size: Size.square(Sizing.serverSideBarWidth),
       child: TextButton(
-              onPressed: () {
-                onPressed(label);
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: focused
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).primaryColorLight,
-              ),
-              child: ClipPath(
-                clipper: RoundedHexagonalClipper(),
-                child: child,
-              ),
-            ),
+        onPressed: () {
+          onPressed(label);
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: focused
+              ? Theme.of(context).backgroundColor
+              : Theme.of(context).primaryColorLight,
+        ),
+        child: ClipPath(
+          clipper: RoundedHexagonalClipper(),
+          child: child,
+        ),
+      ),
     );
   }
 }

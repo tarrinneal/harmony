@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:harmony/spec/spec.dart';
+import 'package:h_spec/spec.dart';
 
 import '../models/message.dart';
 import '../models/user.dart';

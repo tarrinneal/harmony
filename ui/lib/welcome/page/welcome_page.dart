@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harmony/keyword.dart' as keyword;
 import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 import 'package:harmony/state/state.dart';
 
@@ -14,7 +15,7 @@ class WelcomePage extends StatelessWidget {
     final appState = AppRouteScope.of(context);
     return Scaffold(
       appBar: WelcomeAppBar(
-        title: 'Harmony',
+        title: keyword.appTitle,
         actions: [
           ActionButton(
             title: 'Login',

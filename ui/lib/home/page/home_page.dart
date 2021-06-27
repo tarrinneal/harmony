@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/server/page/server_page.dart';
-import 'package:harmony/spec/spec.dart';
+import 'package:h_spec/spec.dart';
 
 import '../strings.dart' as strings;
 import '../widget/home_button.dart';
