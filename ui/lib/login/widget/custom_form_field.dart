@@ -38,6 +38,24 @@ class CustomFormField extends StatelessWidget {
         validator: validator,
       );
 
+  factory CustomFormField.username() => CustomFormField._(
+        labelText: 'Username',
+        validator: (String? value) {
+          return (/*check db for username*/ true
+              ? null
+              : 'Username is not available');
+        },
+      );
+
+  factory CustomFormField.displayName() => CustomFormField._(
+        labelText: 'Display Name',
+        validator: (String? value) {
+          return (value != null
+              ? null
+              : 'Please enter a display name');
+        },
+      );
+
   final String labelText;
   final Validator validator;
   final TextEditingController? controller;
