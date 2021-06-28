@@ -43,17 +43,7 @@ class LoginFormState extends State<LoginForm> {
               ),
               Container(
                 width: 300,
-                child: TextFormField(
-                  validator: (String? value) {
-                    return (value != null && value.length > 8
-                        ? null
-                        : 'Password must be 8 characters or longer');
-                  },
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                ),
+                child: CustomFormField.password(),
               ),
               ElevatedButton(
                 onPressed: () {

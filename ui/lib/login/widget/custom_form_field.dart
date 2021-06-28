@@ -9,6 +9,8 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField._({
     required this.labelText,
     required this.validator,
+    this.obscureText: false,
+    this.enableSuggestions: true,
     this.controller,
   });
 
@@ -21,6 +23,15 @@ class CustomFormField extends StatelessWidget {
         },
       );
 
+  factory CustomFormField.password() => CustomFormField._(
+        labelText: 'Password',
+        validator: (String? value) {
+          return (value != null && value.length > 8
+              ? null
+              : 'Password must be 8 characters or longer');
+        },
+      );
+
   factory CustomFormField.passwordConfirm(Validator validator) =>
       CustomFormField._(
         labelText: 'Confirm Password',
@@ -30,6 +41,8 @@ class CustomFormField extends StatelessWidget {
   final String labelText;
   final Validator validator;
   final TextEditingController? controller;
+  final bool obscureText;
+  final bool enableSuggestions;
 
   // Example for text editing controller validator
   // String? validateConfirmPassword(String? value) {
@@ -41,6 +54,9 @@ class CustomFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: validator,
+      autocorrect: false,
+      obscureText: obscureText,
+      enableSuggestions: enableSuggestions,
       decoration: InputDecoration(labelText: labelText),
     );
   }
