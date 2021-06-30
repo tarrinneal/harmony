@@ -35,6 +35,8 @@ dependencies:
   flutter_svg: ^0.22.0
   h_spec:
     path: ./packages/spec
+  platform_type:
+    path: ./packages/platform_type
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:platform_type/platform_type.dart';
 
 import 'auth_service.dart';
 import '../models/auth_provider.dart';
@@ -55,7 +55,9 @@ class FirebaseAuthService implements AuthService {
   }
 
   Future<bool> _handleGoogleLogin() async {
-    return kIsWeb ? _loginWithGoogleWeb() : _loginWithGoogleMobile();
+    return ClientType.platform.isWeb
+        ? _loginWithGoogleWeb()
+        : _loginWithGoogleMobile();
   }
 
   Future<bool> _loginWithGoogleWeb() async {
@@ -148,4 +150,8 @@ class FirebaseAuthService implements AuthService {
 
   @override
   Future<User?> get user async => _user;
+}
+
+extension on PlatformType {
+  bool get isWeb => this == PlatformType.web;
 }
