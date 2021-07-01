@@ -7,4 +7,6 @@ class Sizing {
 
   static const double welcomeAppBarHeight = 75;
   static const double welcomeAppBarVerticalPadding = 12;
+
+  static const double loginFormWidth = 300;
 }

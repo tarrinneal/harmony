@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h_spec/spec.dart';
 
 import 'custom_form_field.dart';
 
@@ -35,11 +36,11 @@ class LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                width: 300,
+                width: Sizing.loginFormWidth,
                 child: CustomFormField.email(),
               ),
               Container(
-                width: 300,
+                width: Sizing.loginFormWidth,
                 child: CustomFormField.password(),
               ),
               ElevatedButton(

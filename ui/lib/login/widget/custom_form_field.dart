@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harmony/login/strings.dart';
 
 typedef Validator = String? Function(String?);
 
@@ -15,44 +16,44 @@ class CustomFormField extends StatelessWidget {
   });
 
   factory CustomFormField.email() => CustomFormField._(
-        labelText: 'Email',
+        labelText: loginFormEmail,
         validator: (String? value) {
           return (value != null && _emailValidator.hasMatch(value)
               ? null
-              : 'Not a valid email');
+              : loginFormEmailError);
         },
       );
 
   factory CustomFormField.password() => CustomFormField._(
-        labelText: 'Password',
+        labelText: loginFormPassword,
         validator: (String? value) {
           return (value != null && value.length > 8
               ? null
-              : 'Password must be 8 characters or longer');
+              : loginFormPasswordError);
         },
       );
 
   factory CustomFormField.passwordConfirm(Validator validator) =>
       CustomFormField._(
-        labelText: 'Confirm Password',
+        labelText: loginFormConfirmPassword,
         validator: validator,
       );
 
   factory CustomFormField.username() => CustomFormField._(
-        labelText: 'Username',
+        labelText: loginFormUsername,
         validator: (String? value) {
           return (/*check db for username*/ true
               ? null
-              : 'Username is not available');
+              : loginFormUsernameError);
         },
       );
 
   factory CustomFormField.displayName() => CustomFormField._(
-        labelText: 'Display Name',
+        labelText: loginFormDisplayName,
         validator: (String? value) {
           return (value != null
               ? null
-              : 'Please enter a display name');
+              : loginFormDisplayNameError);
         },
       );
 
