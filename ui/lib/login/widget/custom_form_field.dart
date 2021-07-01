@@ -27,7 +27,7 @@ class CustomFormField extends StatelessWidget {
   factory CustomFormField.password() => CustomFormField._(
         labelText: loginFormPassword,
         validator: (String? value) {
-          return (value != null && value.length > 8
+          return (value != null && value.length >= 8
               ? null
               : loginFormPasswordError);
         },
