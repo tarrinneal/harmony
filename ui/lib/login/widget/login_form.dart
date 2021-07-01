@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:h_spec/spec.dart';
 
-final _emailValidator = RegExp(
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+import 'custom_form_field.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
     required this.onSubmit,
+    this.formFields = const [],
   });
+
+  final List<CustomFormField> formFields;
 
   final Function onSubmit;
   @override
   LoginFormState createState() => LoginFormState(onSubmit: onSubmit);
-
 }
 
 class LoginFormState extends State<LoginForm> {
@@ -34,29 +36,12 @@ class LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                width: 300,
-                child: TextFormField(
-                  validator: (String? value) {
-                    return (value != null && _emailValidator.hasMatch(value)
-                        ? null
-                        : 'Not a valid email');
-                  },
-                  decoration: const InputDecoration(labelText: 'Email'),
-                ),
+                width: Sizing.loginFormWidth,
+                child: CustomFormField.email(),
               ),
               Container(
-                width: 300,
-                child: TextFormField(
-                  validator: (String? value) {
-                    return (value != null && value.length > 8
-                        ? null
-                        : 'Password must be 8 characters or longer');
-                  },
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                ),
+                width: Sizing.loginFormWidth,
+                child: CustomFormField.password(),
               ),
               ElevatedButton(
                 onPressed: () {
