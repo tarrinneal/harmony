@@ -1,14 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:platform_type/platform_type.dart';
+import 'package:platform_type/platform_type.dart' as client_type;
 
 import 'auth_service.dart';
 import '../models/auth_provider.dart';
 import '../models/user.dart';
 
 class FirebaseAuthService implements AuthService {
-  FirebaseAuthService(this._auth);
+  FirebaseAuthService(
+    this._auth, {
+    GoogleSignIn? googleSignIn,
+  }) : _googleSignIn = googleSignIn ?? GoogleSignIn();
+
   final fb.FirebaseAuth _auth;
+  final GoogleSignIn _googleSignIn;
   User? _user;
   @override
   Future<bool> get loggedIn async => _auth.currentUser != null;
@@ -46,7 +51,6 @@ class FirebaseAuthService implements AuthService {
   }
 
   Future<void> _setUser(fb.UserCredential credential) async {
-    _credentialHasUser(credential);
     _user = User(
       username: credential.user!.displayName ?? '',
       email: credential.user!.email ?? '',
@@ -55,7 +59,7 @@ class FirebaseAuthService implements AuthService {
   }
 
   Future<bool> _handleGoogleLogin() async {
-    return ClientType.platform.isWeb
+    return client_type.ClientType.platform.isWeb
         ? _loginWithGoogleWeb()
         : _loginWithGoogleMobile();
   }
@@ -83,7 +87,7 @@ class FirebaseAuthService implements AuthService {
   }
 
   Future<bool> _loginWithGoogleMobile() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
     if (googleUser == null) return false;
 
@@ -138,7 +142,7 @@ class FirebaseAuthService implements AuthService {
 
     await credential.user!.updateDisplayName(displayName);
 
-    _setUser(credential);
+    await _setUser(credential);
 
     _user = _user!.addDisplayName(displayName);
 
@@ -152,6 +156,6 @@ class FirebaseAuthService implements AuthService {
   Future<User?> get user async => _user;
 }
 
-extension on PlatformType {
-  bool get isWeb => this == PlatformType.web;
+extension on client_type.PlatformType {
+  bool get isWeb => this == client_type.PlatformType.web;
 }

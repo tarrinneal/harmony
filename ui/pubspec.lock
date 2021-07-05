@@ -149,7 +149,7 @@ packages:
     source: hosted
     version: "1.4.1"
   firebase_auth_platform_interface:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
