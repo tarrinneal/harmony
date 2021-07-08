@@ -41,7 +41,33 @@ void main() {
         final routePath = await _buildParser().parseRouteInformation(routeInfo);
 
         // Assert
-        expect(routePath, isA<WelcomeRotuePath>());
+        expect(routePath, isA<WelcomeRoutePath>());
+      });
+
+      test(
+          'returns LoginRoute for location with 1 segment and containing '
+          'welcome', () async {
+        // Arrange
+        final routeInfo = RouteInformation(location: '/login');
+
+        // Act
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
+
+        // Assert
+        expect(routePath, isA<LoginRoutePath>());
+      });
+
+      test(
+          'returns RegisterRoute for location with 1 segment and containing '
+          'welcome', () async {
+        // Arrange
+        final routeInfo = RouteInformation(location: '/register');
+
+        // Act
+        final routePath = await _buildParser().parseRouteInformation(routeInfo);
+
+        // Assert
+        expect(routePath, isA<RegisterRoutePath>());
       });
 
       test(
@@ -110,6 +136,28 @@ void main() {
         // Assert
         expect(routeInfo, isNotNull);
         expect(routeInfo!.location, '/woops');
+      });
+
+      test('returns information with /login location for LoginRoute', () {
+        // Arrange/Act
+        final routeInfo = _buildParser().restoreRouteInformation(
+          LoginRoutePath(),
+        );
+
+        // Assert
+        expect(routeInfo, isNotNull);
+        expect(routeInfo!.location, '/login');
+      });
+
+      test('returns information with /register location for RegisterRoute', () {
+        // Arrange/Act
+        final routeInfo = _buildParser().restoreRouteInformation(
+          RegisterRoutePath(),
+        );
+
+        // Assert
+        expect(routeInfo, isNotNull);
+        expect(routeInfo!.location, '/register');
       });
 
       test(

@@ -4,7 +4,7 @@ abstract class HarmonyRoutePath {
 
 class SplashRoutePath extends HarmonyRoutePath {}
 
-class WelcomeRotuePath extends HarmonyRoutePath {}
+class WelcomeRoutePath extends HarmonyRoutePath {}
 
 class AppShellRoutePath extends HarmonyRoutePath {
   const AppShellRoutePath(this.serverId);
@@ -12,3 +12,7 @@ class AppShellRoutePath extends HarmonyRoutePath {
 }
 
 class UnknownRoutePath extends HarmonyRoutePath {}
+
+class LoginRoutePath extends HarmonyRoutePath {}
+
+class RegisterRoutePath extends HarmonyRoutePath {}
