@@ -3,26 +3,16 @@ import 'package:h_spec/spec.dart';
 
 import 'custom_form_field.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({
+class AuthForm extends StatelessWidget {
+  AuthForm({
+    required GlobalKey<FormState> formKey,
     required this.onSubmit,
     this.formFields = const [],
-  });
+  }) : _formKey = formKey;
 
+  final VoidCallback onSubmit;
+  final GlobalKey<FormState> _formKey;
   final List<CustomFormField> formFields;
-
-  final Function onSubmit;
-  @override
-  LoginFormState createState() => LoginFormState(onSubmit: onSubmit);
-}
-
-class LoginFormState extends State<LoginForm> {
-  LoginFormState({
-    required this.onSubmit,
-  });
-
-  final Function onSubmit;
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +25,11 @@ class LoginFormState extends State<LoginForm> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Container(
-                width: Sizing.loginFormWidth,
-                child: CustomFormField.email(),
-              ),
-              Container(
-                width: Sizing.loginFormWidth,
-                child: CustomFormField.password(),
-              ),
+              ...formFields.map(_buildFormField),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
                     onSubmit();
                   }
                 },
@@ -55,6 +39,13 @@ class LoginFormState extends State<LoginForm> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildFormField(CustomFormField formField) {
+    return Container(
+      width: Sizing.loginFormWidth,
+      child: formField,
     );
   }
 }

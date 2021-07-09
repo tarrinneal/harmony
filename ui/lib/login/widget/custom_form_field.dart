@@ -10,12 +10,14 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField._({
     required this.labelText,
     required this.validator,
+    this.controller,
     this.obscureText: false,
     this.enableSuggestions: true,
-    this.controller,
   });
 
-  factory CustomFormField.email() => CustomFormField._(
+  factory CustomFormField.email({required TextEditingController controller}) =>
+      CustomFormField._(
+        controller: controller,
         labelText: loginFormEmail,
         validator: (String? value) {
           return (value != null && _emailValidator.hasMatch(value)
@@ -24,8 +26,12 @@ class CustomFormField extends StatelessWidget {
         },
       );
 
-  factory CustomFormField.password() => CustomFormField._(
+  factory CustomFormField.password({
+    required TextEditingController controller,
+  }) =>
+      CustomFormField._(
         labelText: loginFormPassword,
+        controller: controller,
         validator: (String? value) {
           return (value != null && value.length >= 8
               ? null
@@ -39,21 +45,30 @@ class CustomFormField extends StatelessWidget {
         validator: validator,
       );
 
-  factory CustomFormField.username() => CustomFormField._(
+  factory CustomFormField.username({
+    required TextEditingController controller,
+  }) =>
+      CustomFormField._(
+        controller: controller,
         labelText: loginFormUsername,
         validator: (String? value) {
+          // I think we should opaquely send the username here and let the db
+          // error out if the username doesn't exist. We can update with an
+          // error later. Also, isn't email address our standin for username?
           return (/*check db for username*/ true
               ? null
               : loginFormUsernameError);
         },
       );
 
-  factory CustomFormField.displayName() => CustomFormField._(
+  factory CustomFormField.displayName({
+    required TextEditingController controller,
+  }) =>
+      CustomFormField._(
+        controller: controller,
         labelText: loginFormDisplayName,
         validator: (String? value) {
-          return (value != null
-              ? null
-              : loginFormDisplayNameError);
+          return (value != null ? null : loginFormDisplayNameError);
         },
       );
 

@@ -3,11 +3,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:harmony/state/config/harmony_page.dart';
 import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 
-import '../widget/login_form.dart';
+import '../widget/auth_form.dart';
 
 final String assetName = './Harmony.svg';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +28,10 @@ class LoginPage extends StatelessWidget {
               semanticsLabel: 'Harmony Logo',
               fit: BoxFit.fill,
             ),
-            LoginForm(
+            AuthForm(
+              formKey: _formKey,
               onSubmit: () =>
-                  {AppRouteScope.of(context).selectedPage = HarmonyPage.server},
+                  AppRouteScope.of(context).selectedPage = HarmonyPage.server,
             ),
           ],
         ),
