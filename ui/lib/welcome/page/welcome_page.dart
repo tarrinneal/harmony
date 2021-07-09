@@ -24,6 +24,13 @@ class WelcomePage extends StatelessWidget {
               appState.pushPage(HarmonyPage.login);
             },
           ),
+          ActionButton(
+            title: 'Register',
+            onPressed: () {
+              print('go to registration page');
+              appState.pushPage(HarmonyPage.register);
+            },
+          ),
         ],
       ),
       body: Center(

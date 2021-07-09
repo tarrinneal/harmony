@@ -14,6 +14,14 @@ import 'package:harmony/routing/config/harmony_route_path.dart';
 /// should display a page where the user learns about the app and has a way to
 /// authenticate.
 ///
+/// '/login' =>
+/// should display a page where the user can enter their credentials to
+/// authenticate themselves to use the app
+///
+/// '/register' =>
+/// should display a page where the user can enter required credentials to
+/// register themselves as an authenticated app user
+///
 /// '/server/$serverId/?$cchannelId' =>
 ///  should display a server page, this route can optionally contain a channelId
 ///  to display a selected channel within the server
@@ -32,7 +40,15 @@ class HarmonyRouteInformationParser
     // TODO(#31): Attempt user Authentication at this junction?
     final loggedIn = await authService.loggedIn;
     if (!loggedIn && segments.length == 1 && segments.first == 'welcome') {
-      return SynchronousFuture(WelcomeRotuePath());
+      return SynchronousFuture(WelcomeRoutePath());
+    }
+
+    if (!loggedIn && segments.length == 1 && segments.first == 'login') {
+      return SynchronousFuture(LoginRoutePath());
+    }
+
+    if (!loggedIn && segments.length == 1 && segments.first == 'register') {
+      return SynchronousFuture(RegisterRoutePath());
     }
 
     if (segments.contains('server')) {
@@ -40,7 +56,7 @@ class HarmonyRouteInformationParser
       return SynchronousFuture(AppShellRoutePath(serverId));
     }
 
-    return Future.value(UnknownRoutePath());
+    return SynchronousFuture(UnknownRoutePath());
   }
 
   @override
@@ -48,8 +64,16 @@ class HarmonyRouteInformationParser
     if (configuration is UnknownRoutePath)
       return RouteInformation(location: '/woops');
 
-    if (configuration is WelcomeRotuePath || configuration is SplashRoutePath) {
+    if (configuration is WelcomeRoutePath || configuration is SplashRoutePath) {
       return RouteInformation(location: '/welcome');
+    }
+
+    if (configuration is LoginRoutePath) {
+      return RouteInformation(location: '/login');
+    }
+
+    if (configuration is RegisterRoutePath) {
+      return RouteInformation(location: '/register');
     }
 
     if (configuration is AppShellRoutePath) {

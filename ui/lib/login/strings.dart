@@ -1,7 +1,5 @@
-
 /// This file is used to store the constant strings for the login directory
 /// Naming convention is prefixed with directory name
-
 
 String get loginFormEmail => 'Email';
 String get loginFormEmailError => 'Invalid Email';
@@ -17,3 +15,5 @@ String get loginFormUsernameError => 'Username is not available';
 
 String get loginFormDisplayName => 'Display Name';
 String get loginFormDisplayNameError => 'Please enter a display name';
+
+String get loginFormPasswordConfirmationError => 'Passwords do not match';
