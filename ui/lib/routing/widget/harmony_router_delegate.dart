@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:harmony/app_shell/app_shell.dart';
+import 'package:harmony/login/page/register_page.dart';
 import 'package:harmony/splash/splash.dart';
 import 'package:harmony/login/login.dart';
 import 'package:harmony/state/state.dart';
@@ -10,8 +11,10 @@ import '../config/harmony_route_path.dart';
 
 final pageToPathMap = <HarmonyPage, HarmonyRoutePath>{
   HarmonyPage.unknown: UnknownRoutePath(),
-  HarmonyPage.welcome: WelcomeRotuePath(),
+  HarmonyPage.welcome: WelcomeRoutePath(),
   HarmonyPage.splash: SplashRoutePath(),
+  HarmonyPage.login: LoginRoutePath(),
+  HarmonyPage.register: RegisterRoutePath(),
 };
 
 class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
@@ -74,6 +77,10 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
             MaterialPage(
               child: LoginPage(),
             ),
+          if (appState.selectedPage == HarmonyPage.register)
+            MaterialPage(
+              child: RegisterPage(),
+            ),
           if (appState.selectedPage == HarmonyPage.server)
             MaterialPage(
               child: AppShell(),
@@ -89,20 +96,13 @@ class HarmonyRouterDelegate extends RouterDelegate<HarmonyRoutePath>
 
   // Used to update Application state when provided with a RoutePath
   @override
-  Future<void> setNewRoutePath(HarmonyRoutePath configuration) {
-    if (configuration is UnknownRoutePath) {
-      appState.selectedPage = HarmonyPage.unknown;
-    }
-
-    if (configuration is SplashRoutePath) {
-      _setPage(HarmonyPage.splash);
-    }
-
-    if (configuration is WelcomeRotuePath) {
-      _setPage(HarmonyPage.welcome);
-    }
+  Future<void> setNewRoutePath(HarmonyRoutePath configuration) async {
+    if (configuration is UnknownRoutePath) _setPage(HarmonyPage.unknown);
+    if (configuration is SplashRoutePath) _setPage(HarmonyPage.splash);
+    if (configuration is WelcomeRoutePath) _setPage(HarmonyPage.welcome);
+    if (configuration is LoginRoutePath) _setPage(HarmonyPage.login);
+    if (configuration is RegisterRoutePath) _setPage(HarmonyPage.register);
     if (configuration is AppShellRoutePath) _setPage(HarmonyPage.server);
-    return Future.value(null);
   }
 
   void _setPage(HarmonyPage page) {
