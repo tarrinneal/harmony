@@ -6,7 +6,7 @@ import 'package:harmony/state/config/harmony_page.dart';
 import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 import 'package:provider/provider.dart';
 
-import '../widget/login_form.dart';
+import '../widget/auth_form.dart';
 import '../strings.dart' as strings;
 
 final String assetName = './Harmony.svg';
@@ -17,9 +17,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  late TextEditingController passwordController;
-  late TextEditingController emailController;
-  late TextEditingController displayNameController;
+  late final TextEditingController passwordController;
+  late final TextEditingController emailController;
+  late final TextEditingController displayNameController;
   final _formKey = GlobalKey<FormState>();
 
   @override
