@@ -6,7 +6,7 @@ import 'package:harmony/state/config/harmony_page.dart';
 import 'package:harmony/routing/widget/harmony_router_delegate.dart';
 import 'package:provider/provider.dart';
 
-import '../widget/login_form.dart';
+import '../widget/auth_form.dart';
 import '../strings.dart' as strings;
 
 final String assetName = './Harmony.svg';
