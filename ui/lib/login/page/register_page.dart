@@ -17,9 +17,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  late TextEditingController passwordController;
-  late TextEditingController emailController;
-  late TextEditingController displayNameController;
+  late final TextEditingController passwordController;
+  late final TextEditingController emailController;
+  late final TextEditingController displayNameController;
   final _formKey = GlobalKey<FormState>();
 
   @override
