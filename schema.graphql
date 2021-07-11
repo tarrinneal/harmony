@@ -69,3 +69,5 @@ enum MemberType {
   member
   untrusted
 }
+
+# Dgraph.Authorization {"VerificationKey":"super-authkey","Header":"X-Harmony-App-Auth", "jwkurl":"https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com", "Namespace":"sub","Algo":"RS256","Audience":["harmony-7bb0f"]}
