@@ -1,6 +1,8 @@
-type Server  @withSubscription {
+type Server @withSubscription {
   id: ID!
   name: String! @search
+  isDirectMessage: Boolean!
+  isPrivate: Boolean!
   channels: [Channel]
   members: [User] @hasInverse(field: servers)
   owner: User!
@@ -8,11 +10,12 @@ type Server  @withSubscription {
   emotes: [Emote]
 }
 
-type Channel  @withSubscription {
+type Channel @withSubscription {
   id: ID!
   name: String! @search
   type: ChannelType!
   allowGuests: Boolean!
+  members: [User]
   messages: [Message]
 }
 
@@ -21,7 +24,7 @@ enum ChannelType {
   Text
 }
 
-type Message  @withSubscription {
+type Message @withSubscription {
   id: ID!
   user: User!
   timeStamp: DateTime
@@ -33,31 +36,33 @@ type Message  @withSubscription {
   children: [Message]
 }
 
-type Reaction  @withSubscription {
+type Reaction @withSubscription {
   id: ID!
   emote: Emote!
   users: [User!]
 }
 
-type Emote  {
+type Emote {
   id: ID!
   name: String!
   url: String!
 }
 
-type User  @withSubscription {
-  username: String! @id @search(by: [hash, regexp])
+type User {
+  uid: String! @id @search(by: exact)
   email: String!
   displayName: String! @search
   avatar: String
   servers: [Server] @hasInverse(field: members)
+  directMessages: [Server]
   serverInfo: [ServerInfo]
   friends: [User] @hasInverse(field: friends)
 }
 
-type ServerInfo  @withSubscription {
+type ServerInfo @withSubscription {
   id: ID!
   server: Server!
+  index: Int!
   joinTime: DateTime!
   channels: [Channel]
   memberType: MemberType!
